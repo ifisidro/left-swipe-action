@@ -133,7 +133,9 @@ CSS for both the main content and buttons in light DOM will be just applied.
            */
             open: {
                 type: Boolean,
-                value: false
+                value: false,
+                notify: true,
+                reflectToAttribute: true
             },
             /**
            * If true, drag (touch move) action is disabled and a content is automatically opened by click/touch
@@ -189,7 +191,7 @@ CSS for both the main content and buttons in light DOM will be just applied.
           */
             threshold: {
                 type: Number,
-                value: 25
+                value: 0
             },
             /**
              *f true, all gestures are disabled
@@ -261,6 +263,7 @@ CSS for both the main content and buttons in light DOM will be just applied.
         onMove: function(e){
             var p = this.point;
             var dx = e.detail.dx;
+
             if (p && Math.abs(dx) > this.threshold) {
                 p.update(e.detail.x);
                 this.translate3d(this.open ? this.offset - this.$.content.clientWidth + p.distance() + "px" : p.distance() + "px", 0, 0, this.$.content);
@@ -270,9 +273,12 @@ CSS for both the main content and buttons in light DOM will be just applied.
         _onMoveNoRight: function(e){
             var p = this.point;
             var dx = e.detail.dx;
-            if (p && dx < 0 && Math.abs(dx) > this.threshold) {
-                p.update(e.detail.x);
-                this.translate3d(this.open ? this.offset - this.$.content.clientWidth + p.distance() + "px" : p.distance() + "px", 0, 0, this.$.content);
+            var dy = e.detail.dy;
+            var tan = dy / dx;
+
+            if(p && dx < 0 && Math.abs(tan) < 0.12) {
+              p.update(e.detail.x);
+              this.translate3d(this.open ? this.offset - this.$.content.clientWidth + p.distance() + "px" : p.distance() + "px", 0, 0, this.$.content);
             }
         },
 
