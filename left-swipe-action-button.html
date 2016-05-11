@@ -1,5 +1,5 @@
 <!--
-'left-swipe-action-button' is a button working with left-swipe-action. 
+'left-swipe-action-button' is a button working with left-swipe-action.
 The button is fit with a content height and aligned as table cells.
 
     <left-swipe-action-button onclick="alert('delete')">Delete</left-swipe-action-button>
@@ -11,26 +11,27 @@ To customize styles, please add your styles to the element.
 @auther tejitak
 -->
 <dom-module id="left-swipe-action-button">
-    <style>
-        :host {
-            display: table;
-            height: 100%;
-            padding: 0 20px;
-        }
+  <style>
+    :host {
+      display: table;
+      height: 100%;
+      padding: 0 20px;
+    }
 
-        .action-button-wrapper {
-            display: table-cell;
-            vertical-align: middle;
-            font-size: 1.8rem;
-            font-weight: 300;
-        }
-    </style>
-    <template>
-        <div class="action-button-wrapper">
-            <content></content>
-        </div>
-    </template>
+    .action-button-wrapper {
+      display: table-cell;
+      vertical-align: middle;
+      font-size: 1.8rem;
+      font-weight: 300;
+  }
+  </style>
+  <template>
+    <div class="action-button-wrapper">
+      <content></content>
+    </div>
+  </template>
 </dom-module>
+
 <script>
-    Polymer({is: "left-swipe-action-button"});
+  Polymer({is: "left-swipe-action-button"});
 </script>
